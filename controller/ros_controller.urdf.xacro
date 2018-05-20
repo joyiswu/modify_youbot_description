@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="robotid" default="robot1"/>
+
+  <gazebo>
+    <plugin name="gazebo_ros_controller" filename="libgazebo_ros_control.so">
+      <!--<robotNamespace>$(arg robotid)</robotNamespace>-->
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name ="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <!--<robotBaseFrame>$(arg robotid)/base_footprint</robotBaseFrame>-->
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+
+      <!--<bodyName>base_footprint</bodyName>-->
+      <!--<frameId>robot1/base_footprint</frameId>-->
+    </plugin>
+  </gazebo>
+
+
+</robot>
